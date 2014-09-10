@@ -11,7 +11,10 @@ def multiples(max_number, divs):
 
 def sum_multiples(max_number, divs):
     nums = multiples(max_number, divs)
-    return reduce(lambda x, y: x+y, nums)
+    total = 0
+    for i in nums:
+        total = total + i
+    return total 
 
 if __name__ == '__main__':
     max_number = 1000

@@ -7,7 +7,7 @@ def is_multiple(num, divs):
     return False
 
 def multiples(max_number, divs):
-    return [i for i in range(max_number+1) if is_multiple(i, divs)]
+    return [i for i in range(max_number) if is_multiple(i, divs)]
 
 def sum_multiples(max_number, divs):
     nums = multiples(max_number, divs)

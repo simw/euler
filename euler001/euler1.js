@@ -13,7 +13,7 @@ function euler1(nmax, divs) {
     'use strict';
     var total = 0;
 
-    for (var i=1; i<nmax+1; i++) {
+    for (var i=1; i<nmax; i++) {
         if (is_multiple(i, divs)) {
             total = total + i;
         }

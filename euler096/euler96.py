@@ -6,9 +6,6 @@ constraint = range(9)
 class ConflictException(Exception):
     pass
 
-class StalledException(Exception):
-    pass
-
 def transform_coords(x, y, ver):
     if ver == 0:
         xbar = x
@@ -27,16 +24,27 @@ def transform_coords(x, y, ver):
 
     return (xbar, ybar)
 
+class Constraint(object):
+    def __init__(self, size=9):
+        self.values = tuple(([-1 for y in range(size)] for x in range(size)))
+        self.constraints = tuple(([range(size) for y in range(size)] for x in range(size)))
+
+    def set_value(self, x, y, value):
+        self.values[x][y] = value
+        
+
 class Board(object):
     def __init__(self):
         self.values = tuple(([-1 for x in range(9)] for x in range(9))) 
         self.constraints = tuple(([constraint[:] for x in range(9)] for x in range(9)))
+        
         self.value_maps = tuple(([[-1 for x in range(9)] for x in range(9)] for x in range(3)))
         self.value_map_constraints = tuple(([[constraint[:] for x in range(9)] for x in range(9)] for x in range(3)))
+        
         self.unknowns = 81
     
     def set_value(self, x, y, value):
-        if value >=0:
+        if value >= 0:
             self.values[x][y] = value
             self.unknowns = self.unknowns - 1
             if self.unknowns == 0:

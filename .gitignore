@@ -1,6 +1,7 @@
-.swp
-.swo
+*.swp
+*.swo
+*.pyc
 
-.class
+*.class
 
 out/

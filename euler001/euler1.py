@@ -1,13 +1,19 @@
 #!/usr/bin/python
 
-def main():
-    nmax = 1000
-    
-    n3 = int((nmax-0.1) / 3)
-    n5 = int((nmax-0.1) / 5)
-    n15 = int((nmax-0.1) / 15)
-    
-    print 3 * sum(range(1, n3+1)) + 5 * sum(range(1, n5+1)) - 15 * sum(range(1,n15+1))
+def is_multiple(num, divs):
+    for div in divs:
+        if num % div == 0:
+            return True
+    return False
+
+def multiples(max_number, divs):
+    return [i for i in range(max_number+1) if is_multiple(i, divs)]
+
+def sum_multiples(max_number, divs):
+    nums = multiples(max_number, divs)
+    return reduce(lambda x, y: x+y, nums)
 
 if __name__ == '__main__':
-    main()
+    max_number = 1000
+    divs = [3, 5]
+    print(sum_multiples(max_number, divs))

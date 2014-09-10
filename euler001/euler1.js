@@ -1,24 +1,25 @@
-var _ = require('underscore');
 
-var sum = function(array) {   
-    return array.reduce(function(a,b) { return a+b; }, 0);
-}
-
-function is_divisible(x) {
-    if (x%3 == 0 || x%5 == 0) {
-        return x;
-    } else {
-        return 0;
+function is_multiple(num, divs) {
+    'use strict';
+    for (var i=0; i<divs.length; i++) {
+        if (num % divs[i] === 0) {
+            return true;
+        }
     }
+    return false;
 }
 
-function euler1() {
-    var nmax = 1000;
-    
-    var ns = _.range(1, nmax);
-    ns = ns.map(is_divisible);
-        
-    return sum(ns);
+function euler1(nmax, divs) {
+    'use strict';
+    var total = 0;
+
+    for (var i=1; i<nmax+1; i++) {
+        if (is_multiple(i, divs)) {
+            total = total + i;
+        }
+    }
+
+    return total;
 }
 
-console.log(euler1());
+console.log(euler1(1000, [3, 5]));
